@@ -8,6 +8,7 @@ services:
       - "8080:80"
     volumes:
       - .:/var/www/html
+      - php_logs:/var/www/html/customerSide/logs
     depends_on:
       - db
     environment:
@@ -52,6 +53,7 @@ services:
     container_name: promtail
     volumes:
       - ./promtail-config.yml:/etc/promtail/promtail-config.yml
+      - php_logs:/var/www/html/customerSide/logs  # ✅ Fix indentasi volume
     command: -config.file=/etc/promtail/promtail-config.yml
     depends_on:
       - loki
@@ -60,9 +62,4 @@ volumes:
   db_data:
   grafana_data:
   loki_data:
-
-
-
-
-
-
+  php_logs:  # ✅ Volume yang sama untuk web & promtail

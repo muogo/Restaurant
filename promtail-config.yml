@@ -15,4 +15,5 @@ scrape_configs:
           - localhost
         labels:
           job: "php-logs"
-          __path__: "/var/www/html/customerSide/*.log"
+          __path__: "/var/www/html/customerSide/logs/*.log"
+
